@@ -24,7 +24,7 @@ const Login = () => {
         required
         placeholder="Email"
       />
-      <label htmlFor="password">Password </label>
+      <label htmlFor="password">Password: </label>
       <input
         name="password"
         type="password"

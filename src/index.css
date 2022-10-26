@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -11,67 +13,186 @@ body {
 body {
   min-height: 100vh;
   min-width: 100vw;
+  background: #fff;
+  /* background: #f1f1f1; */
+}
+
+header {
+  background: #fff;
+  font-family: "Press Start 2P", cursive;
+  font-size: 10px;
 }
 
 header .navbar {
   display: flex;
   justify-content: space-between;
-  padding: 20px 20px;
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 10px 20px;
 }
 
 div.navbar a {
+  color: #333;
   text-decoration: none;
 }
 
 nav {
-  width: 200px;
-  align-self: flex-end;
+  align-self: center;
 }
 
 nav div {
   display: flex;
-  justify-content: space-between;
-  justify-self: baseline;
+  justify-content: center;
 }
 
-/* div.app {
-  min-width: 100vw;
-  min-height: 100vh;
-} */
+nav div a,
+span {
+  align-self: center;
+  padding: 0px 10px;
+}
 
-div.pages {
-  max-width: 1400px;
-  margin: 0 auto;
-  padding: 0px 10px 10px 10px;
+nav div button {
+  cursor: pointer;
+  background: #333;
+  color: #fff;
+  margin-left: 10px;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  justify-self: center;
+  font-family: "Press Start 2P", cursive;
+  font-size: 10px;
 }
 
 div.home {
-  border: 1px solid black;
   display: flex;
   flex-direction: column;
-  min-height: 750px;
   justify-content: space-between;
+  min-height: 750px;
+  max-width: 1375px;
+  margin: 0 auto;
+  padding: 0px 10px 10px 10px;
+  border-radius: 4px;
+  background: whitesmoke;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 div.games {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
-  gap: 25px;
   justify-content: center;
+  gap: 25px;
+  padding-top: 20px;
 }
 
 form.add-game {
+  font-family: "Press Start 2P", cursive;
+  font-size: 8px;
+  position: relative;
   display: flex;
-  flex-direction: column;
   align-items: center;
-  /* margin-top: 50px; */
+  align-self: center;
+  justify-content: center;
+  max-width: 1350px;
+  margin-top: 40px;
+  margin-bottom: 20px;
+  padding: 10px 30px;
+  border-radius: 4px;
+  background: #fff;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
 div.game-info {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-align: center;
+  justify-content: flex-end;
+  height: 300px;
+}
+
+div.game-info h2,
+div.game-info p {
+  margin: 0;
+  padding: 5px 0;
+  font-family: fantasy;
+}
+
+div.game-info p {
+  font-size: 14px;
+}
+
+div.game-info span {
+  position: absolute;
+  cursor: pointer;
+  top: 20px;
+  right: 20px;
+}
+
+label {
+  margin: 0px 10px;
+  padding: 2px;
+}
+
+input {
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+input[value] {
+  font-family: "Press Start 2P", cursive;
+}
+
+form button {
+  cursor: pointer;
+  background: #333;
+  color: #fff;
+  margin-left: 10px;
+  padding: 10px;
+  border: 0;
+  border-radius: 4px;
+  justify-self: center;
+  font-family: "Press Start 2P", cursive;
+  font-size: 10px;
+}
+
+form.login,
+form.signup {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  max-width: 400px;
+  margin: 40px auto;
+  padding: 20px;
+  background: whitesmoke;
+  border-radius: 4px;
+}
+
+form.login input::placeholder,
+form.signup input::placeholder {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12px;
+  opacity: 0.3;
   text-align: center;
 }
 
-div.game-info h2 {
+form.login label,
+form.signup label {
   margin: 0;
-  padding: 10px 0;
+  padding: 10px;
+}
+
+form.login button,
+form.signup button {
+  font-family: "Press Start 2P", cursive;
+  font-size: 12px;
+  margin-top: 20px;
+}
+
+div.error {
+  margin-top: 15px;
+  text-align: center;
+  color: red;
 }

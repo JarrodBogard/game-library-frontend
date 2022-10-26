@@ -13,6 +13,12 @@ export const gameReducer = (state, action) => {
       return {
         games: state.games.filter((game) => game._id !== action.payload._id),
       };
+    case "UPDATE_GAME":
+      // const copy = state.games.filter(game => game._id === action.payload._id)
+      const copy = state.games.filter(
+        (game) => game._id !== action.payload._id
+      );
+      return { games: [action.payload, ...copy] };
     default:
       return state;
   }

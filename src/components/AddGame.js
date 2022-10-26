@@ -52,7 +52,6 @@ const AddGame = () => {
 
   return (
     <form className="add-game" onSubmit={handleSubmit}>
-      <h3>Add Game</h3>
       <label htmlFor="title">Title:</label>
       <input
         type="text"
