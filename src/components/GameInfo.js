@@ -18,9 +18,8 @@ const GameInfo = ({ game }) => {
     if (!user) return;
 
     const formData = new FormData();
-    formData.append("file", file, file.name);
+    formData.append("file", file, file.name); // multer is looking at the "file" name in this formData
 
-    console.log(formData.get("file", "formData"));
     const response = await fetch(
       "http://localhost:4000/api/games/image/" + game._id,
       {
