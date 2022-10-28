@@ -1,16 +1,16 @@
 import { useState, useEffect } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useGameContext } from "../hooks/useGameContext";
+import GameImg from "./GameImg";
 
 const GameInfo = ({ game }) => {
   const [file, setFile] = useState([]);
-  const [fileName, setFileName] = useState("");
   const { user } = useAuthContext();
-  const { dispatch } = useGameContext();
+  const { games, dispatch } = useGameContext();
 
   const handleFile = (e) => {
+    console.log(e.target.files);
     setFile(e.target.files[0]);
-    setFileName(e.target.files[0].name);
   };
 
   const handleFileSubmit = async (e) => {
@@ -20,12 +20,14 @@ const GameInfo = ({ game }) => {
     const formData = new FormData();
     formData.append("file", file, file.name);
 
-    console.log(formData.get("file"), "formData");
+    console.log(formData.get("file", "formData"));
     const response = await fetch(
       "http://localhost:4000/api/games/image/" + game._id,
       {
-        method: "PATCH",
-        headers: { Authorization: `Bearer ${user.token}` },
+        method: "PUT",
+        headers: {
+          Authorization: `Bearer ${user.token}`,
+        },
         body: formData,
       }
     );
@@ -33,12 +35,10 @@ const GameInfo = ({ game }) => {
 
     const json = await response.json();
 
-    console.log(json, "json in patch request");
     if (response.ok) {
-      console.log("worked");
       dispatch({ type: "UPDATE_GAME", payload: json });
-      setFileName("");
       setFile([]);
+      e.target.file = null;
     } else throw Error("Unable to upload image");
   };
 
@@ -60,19 +60,22 @@ const GameInfo = ({ game }) => {
   };
 
   useEffect(() => {
-    console.log(file, file.name, "name");
-    console.log(fileName);
-    console.log("file and fileName");
-  }, [file, fileName]);
+    console.log(game);
+    console.log(game.img);
+  }, [file, game]);
 
   return (
     <div className="game-info">
       <span className="material-symbols-outlined" onClick={handleClick}>
         delete
       </span>
-      <div>{game.fileName}</div>
-      <input type="file" onChange={handleFile}></input>
-      <button onClick={handleFileSubmit}>Upload</button>
+      {game && game.img && <GameImg game={game} />}
+      {!game.img && (
+        <div>
+          <input type="file" name="gameImg" onChange={handleFile}></input>
+          <button onClick={handleFileSubmit}>Upload</button>
+        </div>
+      )}
       <h2>{game.title}</h2>
       <p>Price: ${game.price}</p>
     </div>

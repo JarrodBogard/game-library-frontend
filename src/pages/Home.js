@@ -35,7 +35,7 @@ const Home = () => {
     }
   }, [dispatch, user]);
 
-  useEffect(() => console.log(games), [games]);
+  useEffect(() => console.log(games, "games"), [games]);
 
   return (
     <div className="home">
