@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+
 const GameImg = ({ game }) => {
   const [state, setState] = useState("");
 
@@ -17,7 +18,13 @@ const GameImg = ({ game }) => {
 
   return (
     <img
-      style={{ width: "200px", height: "200px", alignSelf: "center" }}
+      className="game-image"
+      style={{
+        width: "200px",
+        height: "225px",
+        alignSelf: "center",
+        borderRadius: "4px",
+      }}
       src={game && game.img && `data:${game.img.contentType};base64,${state}`}
       alt={`Cover: ${game.title}`}
     />

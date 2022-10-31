@@ -34,7 +34,7 @@ export const GameContextProvider = ({ children }) => {
   //     }
   //   }, [user]);
 
-  console.log("GameContext state: ", state);
+  // console.log("GameContext state: ", state);
 
   return (
     <GameContext.Provider value={{ ...state, dispatch }}>

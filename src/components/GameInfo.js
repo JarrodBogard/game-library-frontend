@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { useAuthContext } from "../hooks/useAuthContext";
 import { useGameContext } from "../hooks/useGameContext";
 import GameImg from "./GameImg";
@@ -78,10 +78,6 @@ const GameInfo = ({ game }) => {
     else throw Error("Game not found");
   };
 
-  useEffect(() => {
-    console.log(game, game.img);
-  }, [file, game]);
-
   return (
     <div className="game-info">
       <span className="material-symbols-outlined" onClick={handleClick}>
@@ -89,7 +85,7 @@ const GameInfo = ({ game }) => {
       </span>
       {game && game.img && <GameImg game={game} />}
       {!game.img && (
-        <div>
+        <div className="file-upload">
           <input type="file" onChange={handleFile}></input>
           <button onClick={handleFileSubmit}>Upload</button>
         </div>
