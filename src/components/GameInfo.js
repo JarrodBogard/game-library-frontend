@@ -20,7 +20,7 @@ const GameInfo = ({ game }) => {
     formData.append("gameImg", file, file.name); // multer is looking at the "file" name in this formData
 
     const response = await fetch(
-      "http://localhost:4000/api/games/image/" + game._id,
+      "https://game-library-backend.vercel.app/api/games/image/" + game._id,
       {
         method: "PUT",
         headers: {
@@ -29,7 +29,6 @@ const GameInfo = ({ game }) => {
         body: formData,
       }
     );
-    // "https://game-library-backend.vercel.app/api/games/image/" + game._id,
 
     const json = await response.json();
 
