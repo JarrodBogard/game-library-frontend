@@ -82,7 +82,7 @@ div.games {
   grid-template-columns: repeat(auto-fit, minmax(250px, 250px));
   justify-content: center;
   gap: 75px;
-  padding-top: 20px;
+  padding-top: 30px;
 }
 
 form.add-game {
