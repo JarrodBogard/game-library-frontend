@@ -6,10 +6,9 @@ import GameImg from "./GameImg";
 const GameInfo = ({ game }) => {
   const [file, setFile] = useState([]);
   const { user } = useAuthContext();
-  const { games, dispatch } = useGameContext();
+  const { dispatch } = useGameContext();
 
   const handleFile = (e) => {
-    console.log(e.target.files);
     setFile(e.target.files[0]);
   };
 
@@ -18,7 +17,7 @@ const GameInfo = ({ game }) => {
     if (!user) return;
 
     const formData = new FormData();
-    formData.append("file", file, file.name); // multer is looking at the "file" name in this formData
+    formData.append("gameImg", file, file.name); // multer is looking at the "file" name in this formData
 
     const response = await fetch(
       "http://localhost:4000/api/games/image/" + game._id,
@@ -37,6 +36,28 @@ const GameInfo = ({ game }) => {
     if (response.ok) {
       dispatch({ type: "UPDATE_GAME", payload: json });
       setFile([]);
+
+      const fetchData = async () => {
+        const response = await fetch(
+          "https://game-library-backend.vercel.app/api/games",
+          {
+            headers: { Authorization: `Bearer ${user.token}` },
+          }
+        );
+
+        const json = await response.json();
+
+        if (response.ok) {
+          dispatch({
+            type: "SET_GAMES",
+            payload: json,
+          });
+        } else throw Error("Unable to find data");
+      };
+
+      if (user) {
+        fetchData();
+      }
       e.target.file = null;
     } else throw Error("Unable to upload image");
   };
@@ -59,8 +80,7 @@ const GameInfo = ({ game }) => {
   };
 
   useEffect(() => {
-    console.log(game);
-    console.log(game.img);
+    console.log(game, game.img);
   }, [file, game]);
 
   return (
@@ -71,7 +91,7 @@ const GameInfo = ({ game }) => {
       {game && game.img && <GameImg game={game} />}
       {!game.img && (
         <div>
-          <input type="file" name="gameImg" onChange={handleFile}></input>
+          <input type="file" onChange={handleFile}></input>
           <button onClick={handleFileSubmit}>Upload</button>
         </div>
       )}

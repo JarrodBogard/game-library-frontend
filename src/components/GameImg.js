@@ -1,5 +1,4 @@
 const GameImg = ({ game }) => {
-  console.log(game);
   return (
     <img
       style={{ width: "200px", height: "200px", alignSelf: "center" }}

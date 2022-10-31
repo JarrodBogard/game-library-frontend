@@ -20,7 +20,6 @@ const Home = () => {
       );
 
       const json = await response.json();
-      console.log(json);
 
       if (response.ok) {
         dispatch({
@@ -35,7 +34,7 @@ const Home = () => {
     }
   }, [dispatch, user]);
 
-  useEffect(() => console.log(games, "games"), [games]);
+  // useEffect(() => console.log(games, "games"), [games]);
 
   return (
     <div className="home">
