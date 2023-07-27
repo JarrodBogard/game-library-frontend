@@ -1,7 +1,7 @@
 # What is the Games Library?
 The Games Library is an application that allows you to save and catalog your video game collection.
 
-## How does it work?
+## How the Game Library works
 
 ### 1. Create an account using an email and password or log in if you already have one.
 
